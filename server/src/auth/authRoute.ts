@@ -1,12 +1,12 @@
 import express, { Router, Request, Response } from "express";
-import { postUsername } from "./authService.js";
+import { postGoogleAuth, postLogin, postLogout,getGoogleAuthRedirect } from "./authService.js";
+import passport from "passport";
 
 
 export const authRouter: Router = express.Router();
 
-authRouter.get('/', (req:Request, res: Response)=>{
-    console.log("test")
-    res.send("t")
-})
 
-authRouter.post('/username', postUsername)
+authRouter.get('/google', postGoogleAuth)
+authRouter.get('/google/redirect', passport.authenticate('google'), getGoogleAuthRedirect)
+authRouter.get('/login', postLogin)
+authRouter.get('/logout', postLogout)

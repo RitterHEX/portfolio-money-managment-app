@@ -1,12 +1,26 @@
 import { Request, Response } from "express";
 
 import passport from "passport";
-import LocalStrategy from "passport-local"
 
-const postUsername = (req: Request, res: Response) => {
-    res.send("success")
+const postGoogleAuth = passport.authenticate('google', {
+    scope: ['profile']
+});
+
+const getGoogleAuthRedirect = (req: Request<{}, {}, {}>, res: Response) => {
+    res.status(301).send('redirected')
+}
+
+const postLogin = (req: Request<{}, {}, {}>, res: Response) => {
+    res.send(200)
+}
+
+const postLogout = (req: Request<{}, {}, {}>, res: Response) => {
+    res.send(200)
 }
 
 export {
-    postUsername
+    postGoogleAuth,
+    postLogin,
+    postLogout,
+    getGoogleAuthRedirect
 }

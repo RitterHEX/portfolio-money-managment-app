@@ -1,11 +1,10 @@
+import "dotenv/config";
 import express, { Express, Request, Response, NextFunction } from "express";
-import dotenv from "dotenv"
 import { setUpRouters } from "./routes.js";
-
-
-dotenv.config();
+import './config/passport-setup.ts';
 
 const app: Express = express();
+
 app.use(express.json())
 
 setUpRouters(app)
